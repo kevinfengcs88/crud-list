@@ -15,8 +15,17 @@ body{
     padding:1.25rem;
 }
 
+.white-text{
+    color:white;
+}
+
+.text-stroke{
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+
 #inputField{
-    width:380px;
+    width:386px;
     height:50px;
     border:1px solid black;
     outline:none;
@@ -33,7 +42,7 @@ body{
 }
 
 #searchField{
-    width:380px;
+    width:386px;
     height:50px;
     border:1px solid black;
     outline:none;
@@ -49,17 +58,33 @@ body{
     font-size:30px;
 }
 
+#toDoContainer{
+    margin-bottom:2.5em;
+}
+
 .to-dos{
     margin-top:25px;
     color:white;
 }
 
-.paragraph-styling{
+.to-do-item{
     margin:0;
     cursor:pointer;
     font-size:25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    
 }
 
-/* @font-face {font-family:RuneScape UF; src:url('runescape_uf.ttf');}
+.to-do-item div{
+    flex:1;
+}
 
-.runescape {font-family:RuneScape UF; font-size:4.2em;} */
+.edit-button{
+    cursor:pointer;
+}
+
+.delete-button{
+    cursor:pointer;
+}
