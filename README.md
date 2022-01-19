@@ -8,4 +8,4 @@ A simple JavaScript web app that implements the fundamental CRUD operations:
 4. Delete - Can remove current items
 
 ## Vercel Demo
-You can check out the current version of the web app at this [Vercel deployment](https://crud-list-gtybxr7cv-kevinfengcs88.vercel.app/).
+You can check out the current version of the web app at this [Vercel deployment](https://crud-list.vercel.app/).
