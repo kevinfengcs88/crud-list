@@ -4,6 +4,10 @@ html, body{
     background-image:linear-gradient(120deg, #008C22, #45FCFF)
 }
 
+body{
+    min-height:100vh;
+}
+
 .card{
     background-color:#353535 !important;
     flex:1 1 auto;
