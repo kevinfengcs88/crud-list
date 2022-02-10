@@ -172,3 +172,4 @@ searchField.addEventListener('input', function(){
     }
 });
 
+console.log('this happened OMEGALUL');
