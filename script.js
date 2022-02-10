@@ -98,7 +98,7 @@ function createEditButton(toDoItem, toDoText){
         toDoText.focus();
         placeCaretAtEnd(toDoText);
     })
-    toDoText.addEventListener('keypress', function(e){
+    toDoText.addEventListener('keypress', function(e){  // editing local storage still not functional here
         if (e.key === 'Enter'){
             toDoText.contentEditable = 'false';
             //
@@ -140,12 +140,26 @@ function createToDo(){
                 alert('Please enter a valid value.');
             }
         }
-    })
+    });
+    inputField.addEventListener('keypress', function(e){
+        if (e.key === 'Enter'){
+            const toDos = document.querySelectorAll('.to-do-text');
+            const toDosArray = Array.from(toDos);
+            for (let i = 0; i < toDosArray.length; i++){
+                if (toDosArray[i].innerText.toUpperCase().indexOf(searchField.value.toUpperCase()) > -1){
+                    toDosArray[i].parentElement.style.display = '';
+                }
+                else{
+                    toDosArray[i].parentElement.style.display = 'none';
+                }
+            }
+        }
+    });
 }
 
 createToDo();
 
-searchField.addEventListener('input', function() {
+searchField.addEventListener('input', function(){
     const toDos = document.querySelectorAll('.to-do-text');
     const toDosArray = Array.from(toDos);
     for (let i = 0; i < toDosArray.length; i++){
@@ -156,5 +170,5 @@ searchField.addEventListener('input', function() {
             toDosArray[i].parentElement.style.display = 'none';
         }
     }
-})
+});
 
