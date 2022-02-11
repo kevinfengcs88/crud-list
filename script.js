@@ -25,9 +25,10 @@ function editLocalToDos(toDo){
         toDos = JSON.parse(localStorage.getItem('toDos'));
     }
     const toDoIndex = toDo.children[0].innerText;
-    console.log(toDoIndex);
-    toDos[toDos.indexOf(toDoIndex)] = toDoIndex; //inner text
+    toDos.splice(toDos.indexOf(toDoIndex), 1);
+    toDos.push(toDoIndex);
     localStorage.setItem('toDos', JSON.stringify(toDos));
+    location.reload();  // not ideal
 }
 
 function removeLocalToDos(toDo){
@@ -97,19 +98,17 @@ function createEditButton(toDoItem, toDoText){
         toDoText.contentEditable = 'true';
         toDoText.focus();
         placeCaretAtEnd(toDoText);
-    })
-    toDoText.addEventListener('keypress', function(e){  // editing local storage still not functional here
+    });
+    toDoText.addEventListener('keypress', function(e){  
         if (e.key === 'Enter'){
             toDoText.contentEditable = 'false';
-            //
-            // editLocalToDos(toDoItem);
+            editLocalToDos(toDoItem);
         }
-    })
+    });
     toDoText.addEventListener('blur', function(){
         toDoText.contentEditable = 'false';
-        //
-        // editLocalToDos(toDoItem);
-    })
+        editLocalToDos(toDoItem);
+    });
 }
 
 function createDeleteButton(toDoItem){
@@ -120,7 +119,7 @@ function createDeleteButton(toDoItem){
     deleteButton.addEventListener('click', function(){
         toDoContainer.removeChild(toDoItem);
         removeLocalToDos(toDoItem);
-    })
+    });
 }
 
 function createToDo(){
