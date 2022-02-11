@@ -28,7 +28,6 @@ function editLocalToDos(toDo){
     toDos.splice(toDos.indexOf(toDoIndex), 1);
     toDos.push(toDoIndex);
     localStorage.setItem('toDos', JSON.stringify(toDos));
-    location.reload();  // not ideal
 }
 
 function removeLocalToDos(toDo){
@@ -122,41 +121,38 @@ function createDeleteButton(toDoItem){
     });
 }
 
-function createToDo(){
-    inputField.addEventListener('keypress', function(e){
-        if (e.key === 'Enter'){
-            if (inputField.value.trim() != ''){
-                const toDoItem = document.createElement('div');
-                const toDoText = document.createElement('div');
-                createToDoText(toDoItem, toDoText, inputField.value);
-                createEditButton(toDoItem, toDoText);
-                createDeleteButton(toDoItem);
-                toDoContainer.appendChild(toDoItem);
-                saveLocalToDos(inputField.value);
-                inputField.value = '';
+inputField.addEventListener('keypress', function(e){
+    if (e.key === 'Enter'){
+        if (inputField.value.trim() != ''){
+            const toDoItem = document.createElement('div');
+            const toDoText = document.createElement('div');
+            createToDoText(toDoItem, toDoText, inputField.value);
+            createEditButton(toDoItem, toDoText);
+            createDeleteButton(toDoItem);
+            toDoContainer.appendChild(toDoItem);
+            saveLocalToDos(inputField.value);
+            inputField.value = '';
+        }
+        else{
+            alert('Please enter a valid value.');
+        }
+    }
+});
+inputField.addEventListener('keypress', function(e){
+    if (e.key === 'Enter'){
+        const toDos = document.querySelectorAll('.to-do-text');
+        const toDosArray = Array.from(toDos);
+        for (let i = 0; i < toDosArray.length; i++){
+            if (toDosArray[i].innerText.toUpperCase().indexOf(searchField.value.toUpperCase()) > -1){
+                toDosArray[i].parentElement.style.display = '';
             }
             else{
-                alert('Please enter a valid value.');
+                toDosArray[i].parentElement.style.display = 'none';
             }
         }
-    });
-    inputField.addEventListener('keypress', function(e){
-        if (e.key === 'Enter'){
-            const toDos = document.querySelectorAll('.to-do-text');
-            const toDosArray = Array.from(toDos);
-            for (let i = 0; i < toDosArray.length; i++){
-                if (toDosArray[i].innerText.toUpperCase().indexOf(searchField.value.toUpperCase()) > -1){
-                    toDosArray[i].parentElement.style.display = '';
-                }
-                else{
-                    toDosArray[i].parentElement.style.display = 'none';
-                }
-            }
-        }
-    });
-}
+    }
+});
 
-createToDo();
 
 searchField.addEventListener('input', function(){
     const toDos = document.querySelectorAll('.to-do-text');
